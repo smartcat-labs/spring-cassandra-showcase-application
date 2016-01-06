@@ -1,0 +1,10 @@
+cassandra:
+  contactPoints: 192.168.34.20 # vagrant db machine
+  port: 9042
+  keyspace: smartcatshowcase
+  replicationStrategy: SimpleStrategy
+  replicationFactor: 1
+  readConsistencyLevel: ONE
+  writeConsistencyLevel: ONE
+  username:
+  password:

@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+project.ext.versions = [
+    assertJ: '3.0.0',
+    guava: '18.0',
+    jackson: '2.5.3',
+    cassandra: '2.1.6',
+    cucumber: '1.2.3',
+    springBoot: '1.2.3.RELEASE'
+]
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

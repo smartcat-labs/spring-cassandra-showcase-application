@@ -1,0 +1,22 @@
+buildscript {
+    ext.versions.assertJ = '3.0.0'
+    ext.versions.jackson = '2.5.3'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
