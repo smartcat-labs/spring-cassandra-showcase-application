@@ -1,7 +1,5 @@
 language: java
 sudo: false # faster builds
-
+script: ./gradlew build
 jdk:
   - oraclejdk8
-
-install: mvn install
