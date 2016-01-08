@@ -1,5 +1,5 @@
 language: java
 sudo: false # faster builds
-script: ./gradlew build
+script: gradle check
 jdk:
   - oraclejdk8
