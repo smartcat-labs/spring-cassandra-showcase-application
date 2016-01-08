@@ -1,5 +1,10 @@
 language: java
 sudo: false # faster builds
-script: gradle check
+
 jdk:
   - oraclejdk8
+
+notifications:
+  email: false
+
+script: gradle check
