@@ -36,4 +36,17 @@ public class AccountSchemaCreator {
         statement.setConsistencyLevel(ConsistencyLevel.ALL);
         session.execute(statement);
     }
+
+    public void createAccountByExternalSourceTableIfNotExists() {
+        final String createAccountByExternalSourceTable = SchemaBuilder
+            .createTable(AccountByExternalSource.TABLE_NAME)
+            .addPartitionKey(AccountByExternalSource.EXTERNAL_SOURCE_ID_COLUMN, text())
+            .addPartitionKey(AccountByExternalSource.EXTERNAL_SOURCE_COLUMN, text())
+            .addColumn(AccountByExternalSource.EMAIL_COLUMN, text()).ifNotExists().withOptions()
+            .comment("Account email by external source.").buildInternal();
+
+        final Statement statement = new SimpleStatement(createAccountByExternalSourceTable);
+        statement.setConsistencyLevel(ConsistencyLevel.ALL);
+        session.execute(statement);
+    }
 }

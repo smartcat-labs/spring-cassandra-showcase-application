@@ -17,6 +17,7 @@ import com.datastax.driver.core.Session;
 import io.smartcat.migration.MigrationEngine;
 import io.smartcat.migration.MigrationResources;
 import io.smartcat.migration.MigrationType;
+import io.smartcat.spring.cassandra.showcase.adapter.cassandra.migrations.schema.AddAccountByExternalSourceTableMigration;
 import io.smartcat.spring.cassandra.showcase.adapter.cassandra.migrations.schema.InitializeSchema;
 
 @Configuration
@@ -112,6 +113,7 @@ public class CassandraConfiguration {
         LOGGER.info("Executing schema migrations.");
 
         resources.addMigration(new InitializeSchema(MigrationType.SCHEMA, 1));
+        resources.addMigration(new AddAccountByExternalSourceTableMigration(MigrationType.SCHEMA, 2));
 
         MigrationEngine.withSession(session).migrate(resources);
     }

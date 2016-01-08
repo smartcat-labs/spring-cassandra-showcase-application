@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+<!-- Send debug messages to System.out -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- By default, encoders are assigned the type PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <!-- Reduce amount of logging for embedded cassandra -->
+    <logger name="org.apache.cassandra" level="WARN">
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <logger name="org.datastax" level="WARN">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+</configuration>
