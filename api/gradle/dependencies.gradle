@@ -17,6 +17,7 @@ dependencies {
     // SnakeYML to support YML application configuration.
     compile('org.yaml:snakeyaml:1.15')
 
+    compile('commons-validator:commons-validator:1.4.0')
     compile('org.apache.commons:commons-lang3:3.2.1')
 
     // Cassandra datastax driver for database access.
