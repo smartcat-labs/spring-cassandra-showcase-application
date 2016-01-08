@@ -1,0 +1,6 @@
+cassandra:
+  keyspace: smartcatshowcase_test
+  contactPoints: localhost
+  port: 9342
+  replicationStrategy: NetworkTopologyStrategy
+  startupTimeoutInSeconds: 30

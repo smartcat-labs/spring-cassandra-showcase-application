@@ -7,6 +7,7 @@ dependencies {
     // Spring boot and spring security.
     compile("org.springframework.boot:spring-boot-starter-web:${versions.springBoot}")
     compile("org.springframework.boot:spring-boot-starter-actuator:${versions.springBoot}")
+    compile("org.springframework.boot:spring-boot-starter-test:${versions.springBoot}")
 
     // FasterXML dependencies.
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${versions.jackson}")

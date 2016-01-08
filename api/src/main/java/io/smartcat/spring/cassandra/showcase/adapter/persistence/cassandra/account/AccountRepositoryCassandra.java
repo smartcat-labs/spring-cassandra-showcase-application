@@ -22,6 +22,7 @@ import io.smartcat.spring.cassandra.showcase.domain.account.Account;
 import io.smartcat.spring.cassandra.showcase.domain.account.AccountRepository;
 import io.smartcat.spring.cassandra.showcase.domain.account.AccountRole;
 import io.smartcat.spring.cassandra.showcase.domain.account.EmailAddress;
+import io.smartcat.spring.cassandra.showcase.domain.account.ExternalSource;
 
 @Repository("accountRepositoryCassandra")
 public class AccountRepositoryCassandra implements AccountRepository {
@@ -36,12 +37,14 @@ public class AccountRepositoryCassandra implements AccountRepository {
     public Session session;
 
     private Mapper<AccountByEmail> accountByEmailMapper;
+    private Mapper<AccountByExternalSource> accountByExternalSourceMapper;
     private AccountByEmailAccessor accountByEmailAccessor;
 
     @PostConstruct
     public void setupTable() {
         final MappingManager mappingManager = new MappingManager(session);
         accountByEmailMapper = mappingManager.mapper(AccountByEmail.class);
+        accountByExternalSourceMapper = mappingManager.mapper(AccountByExternalSource.class);
         accountByEmailAccessor = mappingManager.createAccessor(AccountByEmailAccessor.class);
     }
 
@@ -73,5 +76,20 @@ public class AccountRepositoryCassandra implements AccountRepository {
         final ResultSet result = session.execute(statement);
 
         return result.wasApplied();
+    }
+
+    @Override
+    public Optional<Account> accountOfTwitterId(final String twitterId) {
+        final Statement statement = accountByExternalSourceMapper.getQuery(ExternalSource.TWITTER,
+            twitterId);
+        statement.setConsistencyLevel(readConsistencyLevel);
+        final AccountByExternalSource accountByTwitterId = accountByExternalSourceMapper
+            .map(session.execute(statement)).one();
+
+        if (accountByTwitterId == null) {
+            return Optional.empty();
+        }
+
+        return accountOfEmail(new EmailAddress(accountByTwitterId.getEmailAddress()));
     }
 }
