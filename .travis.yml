@@ -7,4 +7,5 @@ jdk:
 notifications:
   email: false
 
-#script: gradle check
+before_script: cd api
+script: gradle build
