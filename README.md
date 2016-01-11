@@ -5,13 +5,13 @@ Showcase application for Cassandra database usage with Spring framework and Data
 
 # General overview
 
-This project is showing how Spring Boot application should be setup to use Embedded Cassandra for testing, and our [Cassandra Migration Tool Java](https://github.com/smartcat-labs/cassandra-migration-tool-java) for DATA and SCHEMA migrations. [CassandraConfiguration](https://github.com/smartcat-labs/spring-cassandra-showcase-application/blob/master/api/src/main/java/io/smartcat/spring/cassandra/showcase/adapter/cassandra/CassandraConfiguration.java) holds all necessary configuration for cluster and session. It pulls values from [application.yml](https://github.com/smartcat-labs/spring-cassandra-showcase-application/blob/master/api/src/main/resources/application.yml). Configuration goes through couple of steps:
+This project is showcase of Cassandra usage on Spring Boot projects. Currently This project is showing how Spring Boot application should be setup to use Embedded Cassandra for testing on one side, and it is showing usage of our [Cassandra Migration Tool Java](https://github.com/smartcat-labs/cassandra-migration-tool-java) for DATA and SCHEMA migrations on the other side. [CassandraConfiguration](https://github.com/smartcat-labs/spring-cassandra-showcase-application/blob/master/api/src/main/java/io/smartcat/spring/cassandra/showcase/adapter/cassandra/CassandraConfiguration.java) holds all necessary configuration for cluster and session. It pulls values from [application.yml](https://github.com/smartcat-labs/spring-cassandra-showcase-application/blob/master/api/src/main/resources/application.yml). Configuration goes through couple of steps:
 
 * Create keyspace if it does not exist
 * Use keyspace
 * Execute all SCHEMA migrations
 
-Showcase is done in lightweight DDD fashion, with [onion architecture](http://alistair.cockburn.us/Hexagonal+architecture) in mind. *Adapter* package holds adpters to outside world (Cassandra configuration and implementation of Repository classes). *Domain* package holds domain logic, Value and Entity objects and Repository interface.
+Showcase is done in lightweight *DDD* fashion, with [onion architecture](http://alistair.cockburn.us/Hexagonal+architecture) in mind. *Adapter* package holds adpters to outside world (Cassandra configuration and implementation of Repository classes). *Domain* package holds domain logic, Value and Entity objects and Repository interface.
 
 #SCHEMA migrations
 
