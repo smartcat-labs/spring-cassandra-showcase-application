@@ -69,7 +69,7 @@ public class AccountRepositoryCassandra implements AccountRepository {
             .collect(Collectors.toSet());
         final Statement statement = accountByEmailAccessor.insertAccountIfNotExists(
             account.email().address(),
-            account.getPassword(),
+            account.password(),
             account.firstName(),
             account.lastName(),
             Date.from(account.registeredAt()),

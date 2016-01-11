@@ -58,7 +58,7 @@ public class AccountByEmail {
         emailAddress = account.email().address();
         firstName = account.firstName();
         lastName = account.lastName();
-        password = account.getPassword();
+        password = account.password();
         roles = account.roles()
             .stream()
             .map(AccountRole::toString)
