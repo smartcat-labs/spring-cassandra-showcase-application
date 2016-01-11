@@ -10,6 +10,10 @@ import com.datastax.driver.core.SimpleStatement;
 import com.datastax.driver.core.Statement;
 import com.datastax.driver.core.schemabuilder.SchemaBuilder;
 
+/**
+ * Helper class to isolate all tables related to account.
+ *
+ */
 public class AccountSchemaCreator {
 
     private final Session session;
@@ -18,6 +22,10 @@ public class AccountSchemaCreator {
         this.session = session;
     }
 
+    /**
+     * Main account table which holds account by email address which is unique per account (natural
+     * primary key).
+     */
     public void createTableIfNotExists() {
         final String createAccountByEmailTable = SchemaBuilder
             .createTable(AccountByEmail.TABLE_NAME)
@@ -37,6 +45,12 @@ public class AccountSchemaCreator {
         session.execute(statement);
     }
 
+    /**
+     * Account by external ID is reverse index to account table by external source. It has compound
+     * primary key which is combination of external source and ID of that source. This table will
+     * allow to fetch account by two queries and it is optimal since this happens only during sign
+     * in.
+     */
     public void createAccountByExternalSourceTableIfNotExists() {
         final String createAccountByExternalSourceTable = SchemaBuilder
             .createTable(AccountByExternalSource.TABLE_NAME)

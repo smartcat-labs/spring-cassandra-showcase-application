@@ -39,6 +39,7 @@ public class AccountRepositoryCassandra implements AccountRepository {
     private Mapper<AccountByEmail> accountByEmailMapper;
     private Mapper<AccountByExternalSource> accountByExternalSourceMapper;
     private AccountByEmailAccessor accountByEmailAccessor;
+    private AccountByExternalSourceAccessor accountByExternalSourceAccessor;
 
     @PostConstruct
     public void setupTable() {
@@ -46,6 +47,8 @@ public class AccountRepositoryCassandra implements AccountRepository {
         accountByEmailMapper = mappingManager.mapper(AccountByEmail.class);
         accountByExternalSourceMapper = mappingManager.mapper(AccountByExternalSource.class);
         accountByEmailAccessor = mappingManager.createAccessor(AccountByEmailAccessor.class);
+        accountByExternalSourceAccessor = mappingManager
+            .createAccessor(AccountByExternalSourceAccessor.class);
     }
 
     @Override
@@ -80,16 +83,28 @@ public class AccountRepositoryCassandra implements AccountRepository {
 
     @Override
     public Optional<Account> accountOfTwitterId(final String twitterId) {
-        final Statement statement = accountByExternalSourceMapper.getQuery(ExternalSource.TWITTER,
-            twitterId);
+        final Statement statement = accountByExternalSourceAccessor
+            .getAccountByExternalSource(ExternalSource.TWITTER.name(), twitterId);
         statement.setConsistencyLevel(readConsistencyLevel);
+        final ResultSet result = session.execute(statement);
         final AccountByExternalSource accountByTwitterId = accountByExternalSourceMapper
-            .map(session.execute(statement)).one();
+            .map(result).one();
 
         if (accountByTwitterId == null) {
             return Optional.empty();
         }
 
         return accountOfEmail(new EmailAddress(accountByTwitterId.getEmailAddress()));
+    }
+
+    @Override
+    public boolean linkTwitterToAccount(final String twitterId, final Account account) {
+        final Statement statement = accountByExternalSourceAccessor.insertExternalSourceIfNotExists(
+            twitterId, ExternalSource.TWITTER.name(), account.email().address());
+
+        statement.setConsistencyLevel(writeConsistencyLevel);
+        final ResultSet result = session.execute(statement);
+
+        return result.wasApplied();
     }
 }

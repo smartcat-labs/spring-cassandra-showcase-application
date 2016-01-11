@@ -24,6 +24,10 @@ public class AccountGenerators {
         return "somePassWord";
     }
 
+    public static String givenAnyTwitterId() {
+        return "twitterId";
+    }
+
     public static Set<AccountRole> givenAnyRoles() {
         return new HashSet<>(Arrays.asList(AccountRole.ADMINISTRATOR, AccountRole.CUSTOMER));
     }

@@ -31,4 +31,14 @@ public interface AccountRepository {
      */
     boolean createIfNotExists(Account account);
 
+    /**
+     * Link Twitter ID to existing account.
+     *
+     * @param twitterId Twitter ID of customer.
+     * @param account Existing account in system.
+     *
+     * @return true if twitter ID is linked, false if twitter Id already exists.
+     */
+    boolean linkTwitterToAccount(final String twitterId, final Account account);
+
 }

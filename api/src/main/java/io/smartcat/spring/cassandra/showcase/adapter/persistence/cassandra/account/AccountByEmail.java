@@ -13,6 +13,10 @@ import io.smartcat.spring.cassandra.showcase.domain.account.Account;
 import io.smartcat.spring.cassandra.showcase.domain.account.AccountRole;
 import io.smartcat.spring.cassandra.showcase.domain.account.EmailAddress;
 
+/**
+ * Account by email address which is unique in system for each account.
+ *
+ */
 @Table(name = AccountByEmail.TABLE_NAME)
 public class AccountByEmail {
 
