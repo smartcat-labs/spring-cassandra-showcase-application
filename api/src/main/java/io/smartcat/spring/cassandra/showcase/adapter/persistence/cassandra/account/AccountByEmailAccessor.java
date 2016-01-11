@@ -36,7 +36,4 @@ public interface AccountByEmailAccessor {
         @Param("registeredAt") Date registeredAt,
         @Param("roles") Set<String> roles,
         @Param("profileImageUrl") String profileImageUrl);
-
-    @Query("SELECT * FROM account_by_email WHERE email_address = :emailAddress")
-    Statement getAccountByEmail(@Param("emailAddress") String emailAddress);
 }

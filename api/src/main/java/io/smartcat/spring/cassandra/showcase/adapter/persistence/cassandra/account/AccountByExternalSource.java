@@ -4,6 +4,11 @@ import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
 import com.datastax.driver.mapping.annotations.Table;
 
+/**
+ * Account by external source which is reverse index of account by email. It stores external source
+ * and id as primary key and stores email as value.
+ *
+ */
 @Table(name = AccountByExternalSource.TABLE_NAME)
 public class AccountByExternalSource {
 
@@ -25,6 +30,14 @@ public class AccountByExternalSource {
     private String emailAddress;
 
     public AccountByExternalSource() {}
+
+    public AccountByExternalSource(final String externalSourceId, final String externalSource,
+        final String emailAddress) {
+        super();
+        this.externalSourceId = externalSourceId;
+        this.externalSource = externalSource;
+        this.emailAddress = emailAddress;
+    }
 
     public String getEmailAddress() {
         return emailAddress;
