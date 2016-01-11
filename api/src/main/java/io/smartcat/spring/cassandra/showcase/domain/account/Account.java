@@ -88,7 +88,7 @@ public class Account {
         this.password = password;
     }
 
-    public String getPassword() {
+    public String password() {
         return password;
     }
 
