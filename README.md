@@ -11,7 +11,7 @@ This project is showcase of Cassandra usage on Spring Boot projects. Currently T
 * Use keyspace
 * Execute all SCHEMA migrations
 
-Showcase is done in lightweight *DDD* fashion, with [onion architecture](http://alistair.cockburn.us/Hexagonal+architecture) in mind. *Adapter* package holds adpters to outside world (Cassandra configuration and implementation of Repository classes). *Domain* package holds domain logic, Value and Entity objects and Repository interface.
+Showcase is done in lightweight *DDD* fashion, with [hexagonal architecture](http://alistair.cockburn.us/Hexagonal+architecture) in mind. *adapter* package holds adapters to outside world (Cassandra configuration and implementation of Repository classes). *domain* package holds domain logic, Value and Entity objects and Repository interface.
 
 #SCHEMA migrations
 
