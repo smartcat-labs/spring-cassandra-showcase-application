@@ -1,14 +1,17 @@
 package io.smartcat.spring.cassandra.showcase.adapter.cassandra.migrations.schema;
 
+import com.datastax.driver.core.Statement;
 import io.smartcat.migration.Migration;
 import io.smartcat.migration.MigrationType;
+import io.smartcat.migration.SchemaMigration;
 import io.smartcat.migration.exceptions.MigrationException;
+import io.smartcat.migration.exceptions.SchemaAgreementException;
 import io.smartcat.spring.cassandra.showcase.adapter.persistence.cassandra.account.AccountSchemaCreator;
 
-public class InitializeSchema extends Migration {
+public class InitializeSchema extends SchemaMigration {
 
-    public InitializeSchema(final MigrationType type, final int version) {
-        super(type, version);
+    public InitializeSchema(final int version) {
+        super(version);
     }
 
     @Override
@@ -27,8 +30,8 @@ public class InitializeSchema extends Migration {
         }
     }
 
-    private void createAccountSchema() {
-        final AccountSchemaCreator accountSchemaCreator = new AccountSchemaCreator(session);
-        accountSchemaCreator.createTableIfNotExists();
+    private void createAccountSchema() throws SchemaAgreementException {
+        final Statement statement = AccountSchemaCreator.createTableIfNotExists();
+        executeWithSchemaAgreement(statement);
     }
 }

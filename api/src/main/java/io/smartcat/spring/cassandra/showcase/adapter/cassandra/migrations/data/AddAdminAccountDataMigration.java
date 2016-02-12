@@ -4,29 +4,28 @@ import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
 
+import io.smartcat.migration.DataMigration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.datastax.driver.mapping.Mapper;
 import com.datastax.driver.mapping.MappingManager;
 
-import io.smartcat.migration.Migration;
-import io.smartcat.migration.MigrationType;
 import io.smartcat.migration.exceptions.MigrationException;
 import io.smartcat.spring.cassandra.showcase.adapter.persistence.cassandra.account.AccountByEmail;
 import io.smartcat.spring.cassandra.showcase.domain.account.Account;
 import io.smartcat.spring.cassandra.showcase.domain.account.AccountRole;
 import io.smartcat.spring.cassandra.showcase.domain.account.EmailAddress;
 
-public class AddAdminAccountDataMigration extends Migration {
+public class AddAdminAccountDataMigration extends DataMigration {
 
     private final static Logger LOGGER = LoggerFactory
         .getLogger(AddAdminAccountDataMigration.class);
 
     private Mapper<AccountByEmail> accountByEmailMapper;
 
-    public AddAdminAccountDataMigration(final MigrationType type, final int version) {
-        super(type, version);
+    public AddAdminAccountDataMigration(final int version) {
+        super(version);
     }
 
     @Override

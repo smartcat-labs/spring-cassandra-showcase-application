@@ -16,17 +16,11 @@ import com.datastax.driver.core.schemabuilder.SchemaBuilder;
  */
 public class AccountSchemaCreator {
 
-    private final Session session;
-
-    public AccountSchemaCreator(final Session session) {
-        this.session = session;
-    }
-
     /**
      * Main account table which holds account by email address which is unique per account (natural
      * primary key).
      */
-    public void createTableIfNotExists() {
+    public static Statement createTableIfNotExists() {
         final String createAccountByEmailTable = SchemaBuilder
             .createTable(AccountByEmail.TABLE_NAME)
             .addPartitionKey(AccountByEmail.EMAIL_COLUMN, text())
@@ -40,9 +34,7 @@ public class AccountSchemaCreator {
             .comment("Accounts in system by email.")
             .buildInternal();
 
-        final Statement statement = new SimpleStatement(createAccountByEmailTable);
-        statement.setConsistencyLevel(ConsistencyLevel.ALL);
-        session.execute(statement);
+        return new SimpleStatement(createAccountByEmailTable);
     }
 
     /**
@@ -51,7 +43,7 @@ public class AccountSchemaCreator {
      * allow to fetch account by two queries and it is optimal since this happens only during sign
      * in.
      */
-    public void createAccountByExternalSourceTableIfNotExists() {
+    public static Statement createAccountByExternalSourceTableIfNotExists() {
         final String createAccountByExternalSourceTable = SchemaBuilder
             .createTable(AccountByExternalSource.TABLE_NAME)
             .addPartitionKey(AccountByExternalSource.EXTERNAL_SOURCE_ID_COLUMN, text())
@@ -59,8 +51,6 @@ public class AccountSchemaCreator {
             .addColumn(AccountByExternalSource.EMAIL_COLUMN, text()).ifNotExists().withOptions()
             .comment("Account email by external source.").buildInternal();
 
-        final Statement statement = new SimpleStatement(createAccountByExternalSourceTable);
-        statement.setConsistencyLevel(ConsistencyLevel.ALL);
-        session.execute(statement);
+        return new SimpleStatement(createAccountByExternalSourceTable);
     }
 }
