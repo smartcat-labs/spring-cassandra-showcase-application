@@ -22,9 +22,9 @@ dependencies {
     compile('org.apache.commons:commons-lang3:3.2.1')
 
     // Cassandra datastax driver for database access.
-    compile('com.datastax.cassandra:cassandra-driver-core:2.1.6')
-    compile('com.datastax.cassandra:cassandra-driver-mapping:2.1.6')
-    compile('io.smartcat:cassandra-migration-tool:0.0.1')
+    compile('com.datastax.cassandra:cassandra-driver-core:2.1.9')
+    compile('com.datastax.cassandra:cassandra-driver-mapping:2.1.9')
+    compile('io.smartcat:cassandra-migration-tool:2.1.9.0')
 
     // JUnit and fluent assertions for unit testing.
     testCompile('junit:junit:4.12')

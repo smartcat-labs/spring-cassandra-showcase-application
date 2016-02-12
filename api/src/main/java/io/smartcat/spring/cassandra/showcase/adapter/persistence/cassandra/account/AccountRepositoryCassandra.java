@@ -53,7 +53,8 @@ public class AccountRepositoryCassandra implements AccountRepository {
 
     @Override
     public Optional<Account> accountOfEmail(final EmailAddress email) {
-        final Statement statement = accountByEmailMapper.getQuery(email.address());
+        final Statement statement = accountByEmailAccessor
+            .getAccountByEmailAddress(email.address());
         statement.setConsistencyLevel(readConsistencyLevel);
         final AccountByEmail accountByEmail =
             accountByEmailMapper.map(session.execute(statement)).one();

@@ -11,8 +11,8 @@ import com.datastax.driver.mapping.Mapper;
 import com.datastax.driver.mapping.MappingManager;
 
 import io.smartcat.migration.Migration;
-import io.smartcat.migration.MigrationException;
 import io.smartcat.migration.MigrationType;
+import io.smartcat.migration.exceptions.MigrationException;
 import io.smartcat.spring.cassandra.showcase.adapter.persistence.cassandra.account.AccountByEmail;
 import io.smartcat.spring.cassandra.showcase.domain.account.Account;
 import io.smartcat.spring.cassandra.showcase.domain.account.AccountRole;
