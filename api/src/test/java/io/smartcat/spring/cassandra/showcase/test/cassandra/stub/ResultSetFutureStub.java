@@ -5,8 +5,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import org.apache.commons.lang.NotImplementedException;
-
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.ResultSetFuture;
 
@@ -26,17 +24,17 @@ public class ResultSetFutureStub implements ResultSetFuture {
 
     @Override
     public void addListener(final Runnable listener, final Executor executor) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean isCancelled() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean isDone() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -63,7 +61,7 @@ public class ResultSetFutureStub implements ResultSetFuture {
 
     @Override
     public boolean cancel(final boolean mayInterruptIfRunning) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
 }
