@@ -11,7 +11,6 @@ import com.datastax.driver.core.Session;
 
 import io.smartcat.migration.MigrationEngine;
 import io.smartcat.migration.MigrationResources;
-import io.smartcat.migration.MigrationType;
 import io.smartcat.spring.cassandra.showcase.adapter.cassandra.migrations.data.AddAdminAccountDataMigration;
 
 @EnableAutoConfiguration
@@ -38,7 +37,7 @@ public class Application {
         final Session session = (Session) context.getBean("session");
 
         final MigrationResources resources = new MigrationResources();
-        resources.addMigration(new AddAdminAccountDataMigration(MigrationType.DATA, 1));
+        resources.addMigration(new AddAdminAccountDataMigration(1));
 
         MigrationEngine.withSession(session).migrate(resources);
     }

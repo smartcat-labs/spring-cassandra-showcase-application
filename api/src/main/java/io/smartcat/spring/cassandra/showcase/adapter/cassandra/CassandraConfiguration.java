@@ -112,8 +112,8 @@ public class CassandraConfiguration {
         final MigrationResources resources = new MigrationResources();
         LOGGER.info("Executing schema migrations.");
 
-        resources.addMigration(new InitializeSchema(MigrationType.SCHEMA, 1));
-        resources.addMigration(new AddAccountByExternalSourceTableMigration(MigrationType.SCHEMA, 2));
+        resources.addMigration(new InitializeSchema(1));
+        resources.addMigration(new AddAccountByExternalSourceTableMigration(2));
 
         MigrationEngine.withSession(session).migrate(resources);
     }
