@@ -1,11 +1,10 @@
 language: java
-sudo: false # faster builds
-
+sudo: false
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 notifications:
   email: false
-
+  slack:
+    secure: IoYUhvahhyfn0n5xjiA5DkLoTeUeHlyGhm9IcQdRqAkP0+Ecp7YZoTxFt7Lf21Kyvlk3tvoONo2QwvcZZzh6I7dBCC4IIoz4DJ6TXtQa+HLFseAoUn8zzPZLjTWOPmc4QCOHPpzcXeXzBrp5txHYUYIzmQGi9Fgh4WFJnJ2jCk6XJ1GGw3cevfIDEnWafSSOJmOyFRZzFoeNWir0XjX+APW49G554Og8RnM3usEQJQ8xUH9Ymyg6l2uUXu1k0X617fdF8LDOH9x6jNhjRH8uB8XVluymEndu4uXPQtvtivtYCWMGyQVrTcTmCgXlN74t1bi59jyG+HGN1XJAkEF2rz6s/QdIw75J0l/4azVfbP3bER8mUHrPHaHBgzk49mYaZinRGn+/fM/6rKz/SYh0FL+jWuVVUOhQD7hONPqMhFGGugByoo4/0JlaDV6MeehuaIn7Bfbzqf4105xv1oz7KrhUBU9nyoyLmKI6kkQUEEUsaapYm+hiP2cvhpms6Biiaw4R3tGiba9uXQG+rI65lMa+tIrHVAWTF6Hk28sJKiCRLaKOL77kW60Mj2bGIWNrl9IKlFrUvay4sP5W8FVguFDnlnuveGg05rHUQ/nz8+pQ6uA+HrqFvntbmaj+eHQ1hXqsuwMGjWNxBolhah1I25FFbTaLZDlcnkTyQ4KQNeM=
 before_script: cd api
 script: gradle build
