@@ -1,0 +1,13 @@
+cucumber:
+  tags: '~@ignore'
+  plugins:
+    - pretty
+    - json:build/cucumber.json
+    - junit:build/cucumber.xml
+    - html:build/cucumber-html-report
+  monochrome: false
+  strict: true
+  dryRun: false
+
+server:
+  apiEntryPoint: http://localhost:8080

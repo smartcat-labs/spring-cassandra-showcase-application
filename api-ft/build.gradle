@@ -1,0 +1,19 @@
+buildscript {
+    apply from: '../common/gradle/common.gradle'
+    repositories {
+        maven { url 'http://repo.spring.io/libs-release' }
+        mavenCentral()
+
+        dependencies {
+            classpath("org.springframework.boot:spring-boot-gradle-plugin:${versions.springBoot}")
+        }
+    }
+}
+
+apply from: 'gradle/dependencies.gradle'
+apply plugin: 'spring-boot'
+apply plugin: 'eclipse'
+
+jar.baseName = 'spring-cassandra-showcase-ft'
+version = '1.0'
+mainClassName = 'io.smartcat.spring.cassandra.showcase.ft.Application'
