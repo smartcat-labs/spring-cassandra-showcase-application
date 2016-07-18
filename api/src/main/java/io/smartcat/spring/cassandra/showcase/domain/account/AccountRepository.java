@@ -2,6 +2,9 @@ package io.smartcat.spring.cassandra.showcase.domain.account;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public interface AccountRepository {
 
     /**
